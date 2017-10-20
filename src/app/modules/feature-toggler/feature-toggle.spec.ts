@@ -1,4 +1,5 @@
-import { FeatureToggle, toggleState } from './feature-toggle';
+import { FeatureToggle } from './feature-toggle';
+import { toggleState } from './toggle-state';
 
 class Foo {
   @FeatureToggle public bar: boolean;

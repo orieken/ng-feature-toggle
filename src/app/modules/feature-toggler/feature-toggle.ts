@@ -1,4 +1,4 @@
-export const toggleState: { [key: string]: boolean } = {};
+import { toggleState } from './toggle-state';
 
 export function FeatureToggle(target: any, key: string) {
   toggleState[key] = toggleState[key] || false;

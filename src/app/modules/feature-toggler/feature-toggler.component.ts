@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { toggleState } from './feature-toggle';
+import { Component, Inject } from '@angular/core';
+import { TOGGLE_STATE } from './toggle-state.token';
+import { ToggleState } from './toggle-state';
 
 @Component({
   selector: 'feature-toggler',
@@ -18,12 +19,14 @@ import { toggleState } from './feature-toggle';
   `
 })
 export class FeatureTogglerComponent {
-  readonly toggles = Object.keys(toggleState)
+  constructor(@Inject(TOGGLE_STATE) private toggleState: ToggleState) {}
+
+  readonly toggles = Object.keys(this.toggleState)
                            .map((key) => {
-                             return { key: key, value: toggleState[key] };
+                             return { key: key, value: this.toggleState[key] };
                            });
 
   public setToggleState(target: HTMLInputElement) {
-    toggleState[target.id] = target.checked;
+    this.toggleState[target.id] = target.checked;
   }
 }
